@@ -10,5 +10,8 @@ import com.management.charitydonation.entity.User;
 import jakarta.transaction.Transactional;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
+	@Query("select u from User u where u.account.idAccount=?1")
+	User getUserByIdAccount(int idAccount);
+	
 
 }

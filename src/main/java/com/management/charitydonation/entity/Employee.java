@@ -44,7 +44,8 @@ private String phoneNumber;
 private String email;
 	@Column(name="address",columnDefinition = "nvarchar(255)")
 private String address;
-	
+	@Column(name="date_of_birth")
+private String dateOfBirth;
 @OneToOne(cascade = CascadeType.ALL)
 @JoinColumn (name="id_account",referencedColumnName = "id_account")
 private Account account1;

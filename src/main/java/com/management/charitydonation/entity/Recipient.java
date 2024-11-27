@@ -37,7 +37,7 @@ public class Recipient {
 	@Column(name = "faculty",columnDefinition = "nvarchar(255)")
 	private String faculty;
 	@Column(name = "specialized",columnDefinition = "nvarchar(255)")
-	@Getter
+
 	private String specialized;
 	@Column(name = "class_recipient",columnDefinition = "nvarchar(255)")
 	private String classRecipient;

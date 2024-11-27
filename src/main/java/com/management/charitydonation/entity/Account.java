@@ -1,6 +1,7 @@
 package com.management.charitydonation.entity;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.stereotype.Component;
 
@@ -42,6 +43,8 @@ private String createTime;
 @Column (name="is_active",columnDefinition ="tinyint",length = 1)
 private int isActive;
 
+@Column(name = "permit", columnDefinition = "String")
+private Set<String>permit;
 
 @ManyToOne 
 @JoinColumn(name="id_role")

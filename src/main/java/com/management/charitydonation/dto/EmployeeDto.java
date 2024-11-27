@@ -18,5 +18,6 @@ public class EmployeeDto {
 	private String phoneNumber;
 	private String email;
 	private String address;
+	private String dateOfBirth;
 	private AccountDto accountDto;
 }
