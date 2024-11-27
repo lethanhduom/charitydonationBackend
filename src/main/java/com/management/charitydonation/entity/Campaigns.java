@@ -48,7 +48,7 @@ public class Campaigns {
 	@Column(name="end_date_expect",columnDefinition = "date")
 	private String endDateExpect;
 	@Column(name="status")
-	private int status;
+	private int status;//0 mới gửi bải chờ duyệt, 1 đã duyệt, 2 không được duyệt 
 	
 	@ManyToOne
 	@JoinColumn(name="id_account")

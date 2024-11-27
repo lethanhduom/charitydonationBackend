@@ -1,5 +1,7 @@
 package com.management.charitydonation.mapper;
 
+import java.util.stream.Collectors;
+
 import com.management.charitydonation.dto.AccountDto;
 import com.management.charitydonation.entity.Account;
 
@@ -15,6 +17,7 @@ accountdto.setUserName(account.getUserName());
 accountdto.setCreateTime(account.getCreateTime());
 accountdto.setPassword(account.getPassword());
 accountdto.setIsActive(account.getIsActive());
+accountdto.setPermit(account.getPermit());
 accountdto.setRoleDto(RoleMapper.mapRoleDto(account.getRole()));
 return accountdto;
 }
@@ -28,6 +31,7 @@ public static Account mapAccount(AccountDto accountdto) {
 	account.setCreateTime(accountdto.getCreateTime());
 	account.setPassword(accountdto.getPassword());
 	account.setIsActive(accountdto.getIsActive());
+	account.setPermit(accountdto.getPermit());
 	account.setRole(RoleMapper.maRole(accountdto.getRoleDto()));
 	return account;
 }

@@ -32,8 +32,8 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id_user")
 private int idUser;
-	@Column(name="id_number")
-private int idNumber;
+	@Column(name="id_number",columnDefinition = "varchar(20)")
+private String idNumber;
 	@Column(name="gender",columnDefinition = "nvarchar(10)")
 private String gender;
 	@Column(name="phone_number")
@@ -56,6 +56,8 @@ private String classUser;
 private String address;
 	@Column(name="full_name")
 private String fullName;
+	@Column(name="date_of_birth")
+private String dateOfBirth;
    @OneToOne (cascade = CascadeType.ALL, fetch = FetchType.LAZY)
    @JoinColumn (name="id_account",referencedColumnName = "id_account")
    private Account account;

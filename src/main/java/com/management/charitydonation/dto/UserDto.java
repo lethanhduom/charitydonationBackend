@@ -15,7 +15,7 @@ public class UserDto {
 
 	
 	private int idUser;
-	private int idNumber;
+	private String idNumber;
 	private String gender;
 	private String phoneNumber;
 	private String email;
@@ -25,6 +25,7 @@ public class UserDto {
 	private String classUser;
 	private String address;
 	private String fullName;
+	private String dateOfBirth;
 	private AccountDto accountDto;
 	
 }

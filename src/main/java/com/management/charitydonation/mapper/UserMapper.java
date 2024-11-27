@@ -19,6 +19,7 @@ public static UserDto mapUserDto(User user) {
 	userdto.setPhoneNumber(user.getPhoneNumber());
 	userdto.setClassUser(user.getClassUser());
 	userdto.setFullName(user.getFullName());
+	userdto.setDateOfBirth(user.getDateOfBirth());
 	userdto.setAccountDto(AccountMapper.mapAccountDto(user.getAccount()));
 	return userdto;
 }
@@ -37,6 +38,7 @@ public static User mapUser(UserDto userdto) {
 	user.setPhoneNumber(userdto.getPhoneNumber());
 	user.setClassUser(userdto.getClassUser());
 	user.setFullName(userdto.getFullName());
+	user.setDateOfBirth(userdto.getDateOfBirth());
 	user.setAccount(AccountMapper.mapAccount(userdto.getAccountDto()));
 	return user;
 }

@@ -1,5 +1,7 @@
 package com.management.charitydonation.dto;
 
+import java.util.Set;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,5 +16,8 @@ public class AccountDto {
 	private String password;
 	private String createTime;
 	private int isActive;
+	private Set<String> permit;
 	private RoleDto roleDto;
+	
+	
 }

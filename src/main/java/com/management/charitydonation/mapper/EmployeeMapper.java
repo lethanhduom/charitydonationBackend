@@ -16,6 +16,7 @@ public class EmployeeMapper {
 		employeedto.setFullName(employee.getFullName());
 		employeedto.setGender(employee.getGender());
 		employeedto.setPhoneNumber(employee.getPhoneNumber());
+		employeedto.setDateOfBirth(employee.getDateOfBirth());
 		employeedto.setAccountDto(AccountMapper.mapAccountDto(employee.getAccount1()));
 		return employeedto;
 	}
@@ -32,6 +33,7 @@ public class EmployeeMapper {
 		employee.setFaculty(employeedto.getFaculty());
 		employee.setGender(employeedto.getGender());
 		employee.setPhoneNumber(employeedto.getPhoneNumber());
+		employee.setDateOfBirth(employeedto.getDateOfBirth());
 		employee.setAccount1(AccountMapper.mapAccount(employeedto.getAccountDto()));
 		return employee;
 	}
