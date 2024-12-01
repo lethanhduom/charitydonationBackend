@@ -17,6 +17,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class RoleServiceImpl implements RoleService {
      RoleRepository roleRepository;
+   
 	@Override
 	public List<RoleDto> getAllRole() {
 		List<Role>listRole=roleRepository.findAll();

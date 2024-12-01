@@ -7,10 +7,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import com.management.charitydonation.dto.CampaignsDto;
 import com.management.charitydonation.entity.Campaigns;
 
 public interface CampaignsRepository extends JpaRepository<Campaigns, Integer> {
 @Query("Select c from Campaigns c where c.status=?1")
 Page<Campaigns>getCampaignPermit(int status,Pageable pageable);
-
+@Query("Update Campaigns SET status=?1 where idCampaign=?2")
+Campaigns updateStatusCampaign(int status, int id);
+Campaigns  findByIdCampaign(int idCampaign);
 }

@@ -11,10 +11,11 @@ public static RecipientDto mapRecipientDto(Recipient recipient) {
 	recipientdto.setIdRecipient(recipient.getIdRecipient());
 	recipientdto.setAcadamyStartYear(recipient.getAcadamyStartYear());
 	recipientdto.setAcadamyEndYear(recipient.getAcadamyEndYear());
-	recipientdto.setFaculty(recipient.getFaculty());
+	
 	recipientdto.setFullName(recipient.getFullName());
 	recipientdto.setNumberStudent(recipient.getNumberStudent());
-	recipientdto.setSpecialized(recipient.getSpecialized());
+    recipientdto.setFacultyDto(FacultyMapper.mapFacultyDto(recipient.getFaculty1()));
+    recipientdto.setSpecializedDto(SpecializedMapper.mapSpecializedDto(recipient.getSpecialized()));
 	recipientdto.setClassRecipient(recipient.getClassRecipient());
 	return recipientdto;
 }
@@ -25,10 +26,10 @@ public static Recipient mapRecipient(RecipientDto recipientdto) {
 	recipient.setIdRecipient(recipientdto.getIdRecipient());
 	recipient.setAcadamyStartYear(recipientdto.getAcadamyStartYear());
 	recipient.setAcadamyEndYear(recipientdto.getAcadamyEndYear());
-	recipient.setFaculty(recipientdto.getFaculty());
+	recipient.setFaculty1(FacultyMapper.mapFaculty(recipientdto.getFacultyDto()));
 	recipient.setFullName(recipientdto.getFullName());
 	recipient.setNumberStudent(recipientdto.getNumberStudent());
-	recipient.setSpecialized(recipientdto.getSpecialized());
+	recipient.setSpecialized(SpecializedMapper.mapSpecialized(recipientdto.getSpecializedDto()));
 	recipient.setClassRecipient(recipientdto.getClassRecipient());
 	return recipient;
 }

@@ -12,6 +12,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -46,9 +47,6 @@ private Year acadamyStartYear;
 	@Column(name="acadamy_end_year",columnDefinition = "year")
 	@Nullable
 private Year acadamyEndYear;
-	@Column(name="faculty",columnDefinition = "nvarchar(255)")
-	@Nullable
-private String faculty;
 	@Column(name="class_user")
 	@Nullable
 private String classUser;
@@ -61,5 +59,15 @@ private String dateOfBirth;
    @OneToOne (cascade = CascadeType.ALL, fetch = FetchType.LAZY)
    @JoinColumn (name="id_account",referencedColumnName = "id_account")
    private Account account;
+   
+   @Nullable
+   @ManyToOne
+   @JoinColumn(name="id_faculty")
+   private Faculty faculty3;
+   
+   @Nullable
+   @ManyToOne
+   @JoinColumn(name="id_specialized")
+   private Specialized specialized1;
 
 }

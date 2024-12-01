@@ -11,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -34,21 +35,24 @@ public class Recipient {
 	private String numberStudent;
 	@Column(name = "full_name",columnDefinition = "nvarchar(255)")
 	private String fullName;
-	@Column(name = "faculty",columnDefinition = "nvarchar(255)")
-	private String faculty;
-	@Column(name = "specialized",columnDefinition = "nvarchar(255)")
-
-	private String specialized;
 	@Column(name = "class_recipient",columnDefinition = "nvarchar(255)")
 	private String classRecipient;
 	@Column(name="acadamy_start_year",columnDefinition = "year")
-private Year acadamyStartYear;
+private String acadamyStartYear;
 	@Column(name="acadamy_end_year",columnDefinition = "year")
-private Year acadamyEndYear;
+private String acadamyEndYear;
     	
 	@OneToOne(mappedBy = "recipient")
 	public Campaigns campaign;
-
+	
+	@ManyToOne
+	@JoinColumn(name="id_faculty")
+	private Faculty faculty1;
+    
+	
+	@ManyToOne
+	@JoinColumn(name="id_specialized")
+	private Specialized specialized;
 	
 
 }

@@ -15,10 +15,10 @@ public class RecipientDto {
 	private int idRecipient;
 	private String numberStudent;
 	private String fullName;
-	private String faculty;
-	private String specialized;
 	private String classRecipient;
-	private Year acadamyStartYear;
-	private Year acadamyEndYear;
+	private String acadamyStartYear;
+	private String acadamyEndYear;
+	private FacultyDto facultyDto;
+	private SpecializedDto specializedDto; 
 	
 }

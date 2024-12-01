@@ -32,9 +32,9 @@ public class UserServiceImpl implements UserService{
 private UserRepository userrepository;
 private AccountRepository accountRepository;
 private final PasswordEncoder passwordEndcoder;
-
 @Override
 public UserDto createUser(UserDto userdto) {
+	
 	if(accountRepository.existsByuserName(userdto.getAccountDto().getUserName())==true) {
 		 throw new UserAlreadyExistsException("USER_NAME_EXISTS");
 	}
@@ -69,7 +69,7 @@ public UserDto getUserById(int iduser) {
 public List<UserDto> getAllUser() {
 	List<User>userlist=userrepository.findAll();
 	
-	return userlist.stream().map((user)->UserMapper.mapUserDto(user)).collect(Collectors.toList());
+	return userlist.stream().map((user)-> UserMapper.mapUserDto(user)).collect(Collectors.toList());
 }
 
 @Override
@@ -82,7 +82,6 @@ public UserDto updateUser(UserDto updateuser,int id) {
 //	user.setAccount(AccountMapper.mapAccount(updateuser.getAccount()));
 	user.setAddress(updateuser.getAddress());
 	user.setClassUser(updateuser.getClassUser());
-	user.setFaculty(updateuser.getFaculty());
 	user.setGender(updateuser.getGender());
 	user.setEmail(updateuser.getEmail());
 	user.setIdNumber(updateuser.getIdNumber());

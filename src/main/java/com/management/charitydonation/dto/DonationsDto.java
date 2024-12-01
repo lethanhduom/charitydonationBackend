@@ -1,5 +1,8 @@
 package com.management.charitydonation.dto;
 
+import com.management.charitydonation.entity.Account;
+import com.management.charitydonation.entity.Campaigns;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,6 +17,6 @@ public class DonationsDto {
 	private float amount;
 	private String donationDate;
 	private AccountDto accountDto;
-	private CampaignsDto campaignDto;
+	private CampaignsDto campaignsDto;
 	
 }

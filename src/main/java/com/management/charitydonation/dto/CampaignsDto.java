@@ -1,5 +1,12 @@
 package com.management.charitydonation.dto;
 
+import java.util.List;
+
+import com.management.charitydonation.entity.Account;
+import com.management.charitydonation.entity.CampaignImages;
+import com.management.charitydonation.entity.Employee;
+import com.management.charitydonation.entity.Recipient;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,7 +26,9 @@ public class CampaignsDto {
 	private String endDate;
 	private String endDateExpect;
 	private int status;
-	private AccountDto accountDto;
+	
+   private AccountDto accountDto;
 	private RecipientDto recipientDto;
 	private EmployeeDto employeeDto;
+	List< CampaignImages>campaignimages;
 }
