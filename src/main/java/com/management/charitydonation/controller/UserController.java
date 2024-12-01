@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.management.charitydonation.dto.CampaignsDto;
 import com.management.charitydonation.dto.EmployeeDto;
 import com.management.charitydonation.dto.UserDto;
+import com.management.charitydonation.entity.Campaigns;
 import com.management.charitydonation.entity.Employee;
 import com.management.charitydonation.repository.EmployeeRepository;
 import com.management.charitydonation.service.CampaignService;
@@ -67,7 +68,7 @@ public ResponseEntity<UserDto>getUserByIdAccount(@PathVariable("id") int idAccou
 	
 }
 @GetMapping ("/display/campaignpermit")
-Page<CampaignsDto>displayCampaignValid(
+Page<Campaigns>displayCampaignValid(
 					@RequestParam(defaultValue = "0") int page,
 					@RequestParam(defaultValue = "3") int size
 																

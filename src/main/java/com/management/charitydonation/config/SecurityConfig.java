@@ -29,6 +29,8 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import com.management.charitydonation.entity.Role;
 import com.management.charitydonation.enums.Permit;
 import com.nimbusds.jose.JWSAlgorithm;
@@ -101,6 +103,16 @@ public class SecurityConfig {
 		 .requestMatchers(HttpMethod.GET,"/api/user/**").permitAll()
 		 .requestMatchers(HttpMethod.POST,"/api/paypal/create").permitAll()
 		 .requestMatchers(HttpMethod.POST,"/api/account/login").permitAll()
+		 .requestMatchers(HttpMethod.POST,"/api/vnpay/create").permitAll()
+		 .requestMatchers(HttpMethod.GET,"/api/vnpay/pay").permitAll()
+		 .requestMatchers(HttpMethod.POST,"/api/campaign/create").permitAll()
+		 .requestMatchers(HttpMethod.GET,"api/specialized/getspecialized").permitAll()
+		 .requestMatchers(HttpMethod.GET,"api/faculty/getfaculty").permitAll()
+		 .requestMatchers(HttpMethod.GET,"api/specialized/getspecialized/**").permitAll()
+		 .requestMatchers(HttpMethod.POST,"/api/campaign/updatestatus").hasAnyRole(Permit.ADMIN.name())
+		 .requestMatchers(HttpMethod.GET,"/api/campaign/**").permitAll()
+		 .requestMatchers(HttpMethod.GET,"/api/campaign/image/**").permitAll()
+	        
         
 		 .anyRequest().authenticated()
 	  
@@ -152,5 +164,17 @@ public class SecurityConfig {
 	@Bean
 	public PasswordEncoder encoder() {
 	    return new BCryptPasswordEncoder(10);
+	}
+	
+	@Bean
+	public Cloudinary cloudinary() {
+		
+		Cloudinary cloud=new Cloudinary(ObjectUtils.asMap(
+				"cloud_name","dlirihyoh",
+				"api_key","567743117647528",
+				"api_secret","UqeOUeJH5YQ6GwiioZQthWfVS0o",
+				"secure",true
+				));
+		return cloud;
 	}
 }

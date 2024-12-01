@@ -18,6 +18,7 @@ import com.management.charitydonation.dto.AccountDto;
 import com.management.charitydonation.dto.CampaignsDto;
 import com.management.charitydonation.dto.EmployeeDto;
 import com.management.charitydonation.dto.UserDto;
+import com.management.charitydonation.entity.Campaigns;
 import com.management.charitydonation.service.AccountService;
 import com.management.charitydonation.service.CampaignService;
 import com.management.charitydonation.service.EmployeeService;

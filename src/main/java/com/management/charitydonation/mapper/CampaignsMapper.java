@@ -21,6 +21,7 @@ public static CampaignsDto mapCampaignsDto(Campaigns campaign) {
 	campaigndto.setAccountDto(AccountMapper.mapAccountDto(campaign.getAccount2()));
 	campaigndto.setEmployeeDto(EmployeeMapper.mapEmployeeDto(campaign.getEmployee()));
 	campaigndto.setRecipientDto(RecipientMapper.mapRecipientDto(campaign.getRecipient()));
+	
 	return campaigndto;
 }
 public static Campaigns mapCampaigns(CampaignsDto campaigndto) {

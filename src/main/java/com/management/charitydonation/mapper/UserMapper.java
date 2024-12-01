@@ -13,7 +13,7 @@ public static UserDto mapUserDto(User user) {
 	userdto.setAcadamyStartYear(user.getAcadamyStartYear());
 	userdto.setAcadamyEndYear(user.getAcadamyEndYear());
 	userdto.setAddress(user.getAddress());
-	userdto.setFaculty(user.getFaculty());
+	
 	userdto.setGender(user.getGender());
 	userdto.setEmail(user.getEmail());
 	userdto.setPhoneNumber(user.getPhoneNumber());
@@ -32,7 +32,7 @@ public static User mapUser(UserDto userdto) {
 	user.setAcadamyStartYear(userdto.getAcadamyStartYear());
 	user.setAcadamyEndYear(userdto.getAcadamyEndYear());
 	user.setAddress(userdto.getAddress());
-	user.setFaculty(userdto.getFaculty());
+	
 	user.setGender(userdto.getGender());
 	user.setEmail(userdto.getEmail());
 	user.setPhoneNumber(userdto.getPhoneNumber());

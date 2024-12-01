@@ -56,7 +56,7 @@ public class Campaigns {
 	@Nullable
 	private Account account2;
 
-	@OneToMany(mappedBy = "campaign")
+	@OneToMany(mappedBy = "campaign",cascade = CascadeType.ALL)
 	List< CampaignImages>campaignimages;
 	
 	

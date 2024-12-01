@@ -10,6 +10,7 @@ import java.util.StringJoiner;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -49,6 +50,9 @@ import lombok.experimental.var;
 public class AccountServiceImpl implements AccountService {
 	private AccountRepository accountRepository;
     private PasswordEncoder passwordEncoder;
+//    public AccountServiceImpl(AccountMapper accountMapper) {
+//        this.accountMapper = accountMapper;
+//    }
     @NonFinal
 //    @Value("${jwt.signerKey}")
     protected static final String SIGNER_KEY="tX/nQ+evyqQdmSa9jxVjHyAEQ4Svb++/gxm1hVkfOaYzlxOx0M2wtxI45lUWk1Hz";

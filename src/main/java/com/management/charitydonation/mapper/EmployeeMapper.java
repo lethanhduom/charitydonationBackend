@@ -1,6 +1,7 @@
 package com.management.charitydonation.mapper;
 
 import com.management.charitydonation.dto.EmployeeDto;
+import com.management.charitydonation.entity.Account;
 import com.management.charitydonation.entity.Employee;
 
 public class EmployeeMapper {
@@ -12,7 +13,7 @@ public class EmployeeMapper {
 		employeedto.setIdEmployee(employee.getIdEmployee());
 		employeedto.setAddress(employee.getAddress());
 		employeedto.setEmail(employee.getEmail());
-		employeedto.setFaculty(employee.getFaculty());
+	
 		employeedto.setFullName(employee.getFullName());
 		employeedto.setGender(employee.getGender());
 		employeedto.setPhoneNumber(employee.getPhoneNumber());
@@ -30,7 +31,7 @@ public class EmployeeMapper {
 		employee.setIdNumber(employeedto.getIdNumber());
 		employee.setAddress(employeedto.getAddress());
 		employee.setEmail(employeedto.getEmail());
-		employee.setFaculty(employeedto.getFaculty());
+	
 		employee.setGender(employeedto.getGender());
 		employee.setPhoneNumber(employeedto.getPhoneNumber());
 		employee.setDateOfBirth(employeedto.getDateOfBirth());

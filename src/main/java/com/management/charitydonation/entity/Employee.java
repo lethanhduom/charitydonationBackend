@@ -10,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -33,9 +34,6 @@ private int idEmployee;
 private String fullName;
 	@Column(name="id_number")
 private String idNumber;
-	@Column(name="faculty",columnDefinition = "nvarchar(255)")
-	@Nullable
-private String faculty;
 	@Column(name="gender")
 private String gender;
 	@Column(name="phone_number",columnDefinition = "nvarchar(10)")
@@ -53,4 +51,9 @@ private Account account1;
 
 @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
 private List<Campaigns>campaigns;
+
+@Nullable
+@ManyToOne
+@JoinColumn(name="id_faculty")
+private Faculty faculty2;
 }
