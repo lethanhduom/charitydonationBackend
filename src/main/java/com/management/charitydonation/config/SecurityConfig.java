@@ -112,8 +112,13 @@ public class SecurityConfig {
 		 .requestMatchers(HttpMethod.POST,"/api/campaign/updatestatus").hasAnyRole(Permit.ADMIN.name())
 		 .requestMatchers(HttpMethod.GET,"/api/campaign/**").permitAll()
 		 .requestMatchers(HttpMethod.GET,"/api/campaign/image/**").permitAll()
-	        
-        
+		 .requestMatchers(HttpMethod.POST,"/api/campaign/changestatus").hasAnyRole(Permit.ADMIN.name())
+		 .requestMatchers(HttpMethod.GET,"/api/account/getaccount/**").permitAll()
+		 .requestMatchers(HttpMethod.GET,"/api/admin/idaccount/getemployee/**").hasAnyRole(Permit.ADMIN.name())
+		 .requestMatchers(HttpMethod.GET,"/api/campaign/getimagerepresent/**").permitAll()
+		 .requestMatchers(HttpMethod.POST,"/api/account/google/authenticate").permitAll()
+		 .requestMatchers(HttpMethod.POST,"/api/donation/create").permitAll()
+		 .requestMatchers(HttpMethod.POST,"/api/campaign/updatecurrentmoney").permitAll()
 		 .anyRequest().authenticated()
 	  
 	  

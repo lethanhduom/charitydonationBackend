@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 
+import com.management.charitydonation.Response.AuthenticationResponse;
 import com.management.charitydonation.Response.IntrospectReponse;
 import com.management.charitydonation.Response.LoginResponse;
 import com.management.charitydonation.dto.AccountDto;
@@ -17,4 +18,8 @@ public interface AccountService {
 	public LoginResponse login(AccountDto accountDto);
 	public String generateToken(AccountDto accountDto);
 	public IntrospectReponse introspect(String token);
+	public AccountDto getAccount(int id);
+	public AccountDto getAccountByUserName(String userName);
+	public LoginResponse googleAuthentication(String code);
+	 public AuthenticationResponse outboundAuthentication(String code);
 }

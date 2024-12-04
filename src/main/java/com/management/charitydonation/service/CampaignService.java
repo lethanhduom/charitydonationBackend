@@ -13,9 +13,11 @@ public interface CampaignService {
 	Campaigns createCampaigns (Campaigns campaigndto, List<MultipartFile> images) throws IOException;
 	public Page<CampaignsDto>getCampaign(int page, int size);
 	public long countCampaign();
-	public Page<Campaigns>displayCampaignUser(int page, int size);
-	public Page<Campaigns>displayCampaignAdmin(int page,int size);
-    public CampaignsDto updateCampaignStatus(int status,int id);
+	public Page<CampaignsDto>displayCampaignUser(int page, int size);
+	public Page<CampaignsDto>displayCampaignAdmin(int page,int size,int status);
+    public String  updateCampaignStatus(int status,int idEmployee,int id, String endDateExpect);
     public CampaignsDto getCampaignById(int id);
+    public String UpdateCurrentMoneyCampaign(Float money,int id);
+ 
 }
 

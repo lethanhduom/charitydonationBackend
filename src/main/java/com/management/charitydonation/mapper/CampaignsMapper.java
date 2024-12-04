@@ -14,6 +14,7 @@ public static CampaignsDto mapCampaignsDto(Campaigns campaign) {
 	campaigndto.setCampaignName(campaign.getCampaignName());
 	campaigndto.setContent(campaign.getContent());
 	campaigndto.setCurrentAmmout(campaign.getCurrentAmmout());
+	campaigndto.setTargetAmount(campaign.getTargetAmount());
 	campaigndto.setEndDate(campaign.getEndDate());
 	campaigndto.setStartDate(campaign.getStartDate());
 	campaigndto.setEndDateExpect(campaign.getEndDateExpect());
@@ -33,6 +34,7 @@ public static Campaigns mapCampaigns(CampaignsDto campaigndto) {
 	campaigns.setCampaignName(campaigndto.getCampaignName());
 	campaigns.setContent(campaigndto.getContent());
 	campaigns.setCurrentAmmout(campaigndto.getCurrentAmmout());
+	campaigns.setTargetAmount(campaigndto.getTargetAmount());
 	campaigns.setEndDate(campaigndto.getEndDate());
 	campaigns.setStartDate(campaigndto.getStartDate());
 	campaigns.setStatus(campaigndto.getStatus());

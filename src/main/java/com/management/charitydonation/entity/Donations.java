@@ -34,6 +34,7 @@ private String donationDate;
 	@ManyToOne
 	@JoinColumn(name="id_account")
 	@EqualsAndHashCode.Exclude
+	@Nullable
 	private Account account3;
 	
 	@ManyToOne

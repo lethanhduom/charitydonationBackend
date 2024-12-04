@@ -25,6 +25,7 @@ public interface AccountRepository extends JpaRepository<Account,Integer> {
 	Account  findByUserNameAndPassword(String userName,String password);
     @Query ("Select a From Account a")
     Page<Account>getAllAccount(Pageable pageable);
+    Account  findByIdAccount(int idAccount);
 	
 	
 }

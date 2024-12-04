@@ -14,10 +14,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import com.management.charitydonation.Response.AuthenticationResponse;
 import com.management.charitydonation.Response.IntrospectReponse;
 import com.management.charitydonation.Response.LoginResponse;
 import com.management.charitydonation.dto.AccountDto;
@@ -27,6 +29,8 @@ import com.management.charitydonation.exception.ErrorCode;
 import com.management.charitydonation.exception.ResourceNotFoundException;
 import com.management.charitydonation.mapper.AccountMapper;
 import com.management.charitydonation.repository.AccountRepository;
+import com.management.charitydonation.repository.OutboundIdentityClient;
+import com.management.charitydonation.request.ExchangeTokenRequest;
 import com.management.charitydonation.service.AccountService;
 import com.nimbusds.jose.JOSEException;
 import com.nimbusds.jose.JWSAlgorithm;
@@ -50,13 +54,22 @@ import lombok.experimental.var;
 public class AccountServiceImpl implements AccountService {
 	private AccountRepository accountRepository;
     private PasswordEncoder passwordEncoder;
-//    public AccountServiceImpl(AccountMapper accountMapper) {
-//        this.accountMapper = accountMapper;
-//    }
+    private OutboundIdentityClient outboundIdentityClient;
     @NonFinal
 //    @Value("${jwt.signerKey}")
     protected static final String SIGNER_KEY="tX/nQ+evyqQdmSa9jxVjHyAEQ4Svb++/gxm1hVkfOaYzlxOx0M2wtxI45lUWk1Hz";
-    		
+   
+    @NonFinal
+    protected static final String 	CLIENT_ID="1044781847135-sckdb8f98q60nfbre1v3987sndggjssf.apps.googleusercontent.com";
+    @NonFinal
+    protected static final String 	CLIENT_SECRET="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";
+    
+    @NonFinal
+    protected static final String REDIRECT_URL="http://localhost:3000/authenticate";
+    
+    @NonFinal 
+    protected static final String GRANT_TYPE="authorization_code";
+    
 	@Override
 	public AccountDto createAccount(AccountDto accountdto) {
 		Account account=AccountMapper.mapAccount(accountdto);
@@ -145,6 +158,7 @@ public class AccountServiceImpl implements AccountService {
 				.issueTime(new Date())
 				.expirationTime(new Date(Instant.now().plus(1, ChronoUnit.HOURS).toEpochMilli()))
 				.claim("scope",buildPermit(accountDto))
+				
 				.build();
 		Payload payLoad=new Payload(jwtClaimSet.toJSONObject());
 		JWSObject jwsObject=new JWSObject(header, payLoad);
@@ -190,4 +204,45 @@ private String buildPermit(AccountDto accountDto) {
 	return stringJoiner.toString();
 }
 
+@Override
+public AccountDto getAccount(int id) {
+	Account account=accountRepository.findByIdAccount(id);
+	return AccountMapper.mapAccountDto(account);
+}
+
+@Override
+public AccountDto getAccountByUserName(String userName) {
+   Account account=accountRepository.findByuserName(userName);
+	return AccountMapper.mapAccountDto(account);
+}
+
+@Override
+public LoginResponse googleAuthentication(String code) {
+	var response=outboundIdentityClient.exchangeToken(ExchangeTokenRequest.builder()
+			.code(code)
+			.clientId(CLIENT_ID)
+			.clientSecret(CLIENT_SECRET)
+			.redirectUri(REDIRECT_URL)
+			.grantType("authorization_code")
+			.build()
+			);
+	
+	return LoginResponse.builder()
+			.token(response.getAccessToken())
+			.build();
+}
+@Override
+ public AuthenticationResponse outboundAuthentication(String code) {
+	 var response = outboundIdentityClient.exchangeToken(ExchangeTokenRequest.builder()
+             .code(code)
+             .clientId(CLIENT_ID)
+             .clientSecret(CLIENT_SECRET)
+             .redirectUri(REDIRECT_URL)
+             .grantType(GRANT_TYPE)
+             .build());
+
+     
+
+     return AuthenticationResponse.builder().token(response.getAccessToken()).build();
+ }
 }

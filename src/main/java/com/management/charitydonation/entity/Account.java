@@ -43,7 +43,7 @@ private String createTime;
 @Column (name="is_active",columnDefinition ="tinyint",length = 1)
 private int isActive;
 
-@Column(name = "permit", columnDefinition = "String")
+@Column(name = "permit", columnDefinition = "nvarchar(255)")
 private Set<String>permit;
 
 @ManyToOne 

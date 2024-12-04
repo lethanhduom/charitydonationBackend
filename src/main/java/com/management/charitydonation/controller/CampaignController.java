@@ -37,7 +37,6 @@ import com.paypal.api.payments.Image;
 import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 
-//@CrossOrigin(origins = "http://localhost:3000")
 @AllArgsConstructor
 @RestController
 @RequestMapping("api/campaign")
@@ -97,11 +96,7 @@ public class CampaignController {
     	
     
     }
-    @PostMapping("updatestatus")
-    public ResponseEntity<CampaignsDto>updateStatus(@RequestParam("status")int status, @RequestParam("id")int id){
-    	CampaignsDto campaign=campaignService.updateCampaignStatus(status, id);
-    	return ResponseEntity.ok(campaign);
-    }
+
   @GetMapping("/{id}")
   public ResponseEntity<CampaignsDto>getCampaign(@PathVariable("id") int id){
 	  CampaignsDto campaign=campaignService.getCampaignById(id);
@@ -112,6 +107,29 @@ public class CampaignController {
 	 List<CampaignImagesDto>listImage=campaignImagesService.getCampaignImage(id);
 	 return ResponseEntity.ok(listImage);
  }
+ @PostMapping("/changestatus")
+ public ResponseEntity<String>changeStatusCampaign(
+		 @RequestParam ("status") int status, 
+		 @RequestParam("idEmployee") int idEmployee,
+		 @RequestParam ("id") int id,
+		 @RequestParam("startDate") String startDate
+		 )
+ {
+	String  changeStatus=campaignService.updateCampaignStatus(status,idEmployee, id, startDate);
+	 return ResponseEntity.ok(changeStatus);
+ }
+ @GetMapping("getimagerepresent/{id}")
+ public ResponseEntity<CampaignImagesDto>getRepresentImage(@PathVariable("id") int id){
+	 CampaignImagesDto image=campaignImagesService.getRepresentImage(id);
+	 return ResponseEntity.ok(image);
+ }
 	
-
+ @PostMapping("/updatecurrentmoney")
+ public ResponseEntity<String>updateCurrentMoney(
+		 @RequestParam("money") Float money,
+		 @RequestParam ("id") int id
+		 ){
+ String updateCurrentMoney=campaignService.UpdateCurrentMoneyCampaign(money, id);
+ return ResponseEntity.ok(updateCurrentMoney);
+ }
 }

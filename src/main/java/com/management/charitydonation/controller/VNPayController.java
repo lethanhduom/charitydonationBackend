@@ -13,8 +13,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
+import java.util.TreeMap;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -89,7 +92,7 @@ public class VNPayController {
 	
 	
 	@PostMapping("/create")
-	public Map<String, String> create(@RequestBody String amount) throws UnsupportedEncodingException{
+	public ResponseEntity< String >create(@RequestBody String amount) throws UnsupportedEncodingException{
 		
 		String vnp_Version = "2.1.0";
         String vnp_Command = "pay";
@@ -101,7 +104,7 @@ public class VNPayController {
         String vnp_IpAddr = "127.0.0.1";
         
         Map<String, String> response = new HashMap<>();
-        
+        String paymentUrl="";
         
   try {
 	  Map<String, String> vnp_Params = new HashMap<>();
@@ -155,7 +158,7 @@ public class VNPayController {
       String queryUrl = query.toString();
       String vnp_SecureHash = VNPayService.hmacSHA512(VNPayConfig.vnp_HashSecret, hashData.toString());
       queryUrl += "&vnp_SecureHash=" + vnp_SecureHash;
-      String paymentUrl = VNPayConfig.vnp_Url + "?" + queryUrl;
+      paymentUrl = VNPayConfig.vnp_Url + "?" + queryUrl;
       response.put("paymentUrl", paymentUrl);
   }catch (Exception e) {
 	e.printStackTrace();
@@ -164,9 +167,43 @@ public class VNPayController {
         
         
 		
-		return response ;
+		return ResponseEntity.ok(paymentUrl);
 	}
 	
+	
+	 @GetMapping("/return")
+	    public ResponseEntity<?> paymentReturn(@RequestParam Map<String, String> queryParams) {
+	        // Lấy chữ ký từ tham số trả về
+	        String vnp_SecureHash = queryParams.get("vnp_SecureHash");
+	        queryParams.remove("vnp_SecureHash"); // Loại bỏ để kiểm tra chữ ký
+
+	        // Sắp xếp tham số theo thứ tự bảng chữ cái
+//	        Map<String, String> sortedParams = new TreeMap()<>(queryParams);
+
+	        // Tạo chuỗi dữ liệu để kiểm tra chữ ký
+	        StringBuilder hashData = new StringBuilder();
+	        for (Map.Entry<String, String> entry : queryParams.entrySet()) {
+	            hashData.append(entry.getKey()).append('=').append(entry.getValue()).append('&');
+	        }
+	        hashData.deleteCharAt(hashData.length() - 1); // Xóa dấu `&` cuối cùng
+
+	        // Kiểm tra chữ ký
+	        String computedHash = VNPayService.hmacSHA512(VNPayConfig.vnp_HashSecret, hashData.toString());
+	        if (computedHash.equalsIgnoreCase(vnp_SecureHash)) {
+	            // Chữ ký hợp lệ, xử lý giao dịch
+	            String responseCode = queryParams.get("vnp_ResponseCode");
+	            if ("00".equals(responseCode)) {
+	                // Giao dịch thành công
+	                return ResponseEntity.ok("Giao dịch thành công: " + queryParams.get("vnp_TxnRef"));
+	            } else {
+	                // Giao dịch thất bại
+	                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Giao dịch thất bại");
+	            }
+	        } else {
+	            // Chữ ký không hợp lệ
+	            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Chữ ký không hợp lệ");
+	        }
+	    }
 	
 
 }
