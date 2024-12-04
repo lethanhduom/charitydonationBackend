@@ -34,10 +34,13 @@ public class User {
 	@Column(name="id_user")
 private int idUser;
 	@Column(name="id_number",columnDefinition = "varchar(20)")
+	@Nullable
 private String idNumber;
 	@Column(name="gender",columnDefinition = "nvarchar(10)")
+	@Nullable
 private String gender;
 	@Column(name="phone_number")
+	@Nullable
 private String phoneNumber;
 	@Column(name="email")
 private String email;
@@ -50,12 +53,15 @@ private Year acadamyEndYear;
 	@Column(name="class_user")
 	@Nullable
 private String classUser;
+	@Nullable
 	@Column(name="address",columnDefinition = "nvarchar(255)")
 private String address;
 	@Column(name="full_name")
 private String fullName;
+	@Nullable
 	@Column(name="date_of_birth")
 private String dateOfBirth;
+	@Nullable
    @OneToOne (cascade = CascadeType.ALL, fetch = FetchType.LAZY)
    @JoinColumn (name="id_account",referencedColumnName = "id_account")
    private Account account;

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.management.charitydonation.Response.UpdateResponse;
 import com.management.charitydonation.dto.CampaignImagesDto;
 import com.management.charitydonation.dto.CampaignsDto;
 import com.management.charitydonation.entity.CampaignImages;
@@ -64,22 +65,25 @@ public class CampaignServiceImpl implements CampaignService{
 	}
 
 	@Override
-	public Page<Campaigns> displayCampaignUser(int page, int size) {
+	public Page<CampaignsDto> displayCampaignUser(int page, int size) {
 		Page<Campaigns>getCampaignPermit=campaignRepository.getCampaignPermit(1,PageRequest.of(page, size));
-		return getCampaignPermit;
+		return getCampaignPermit.map(campaign->CampaignsMapper.mapCampaignsDto(campaign));
 	}
 
 	@Override
-	public Page<Campaigns> displayCampaignAdmin(int page, int size) {
-		// TODO Auto-generated method stub
-		return null;
+	public Page<CampaignsDto> displayCampaignAdmin(int page, int size,int status) {
+		Page<Campaigns>getCampaignPermit=campaignRepository.getCampaignPermit(status,PageRequest.of(page, size));
+		return getCampaignPermit.map(campaign->CampaignsMapper.mapCampaignsDto(campaign));
 	}
 
 
 	@Override
-	public CampaignsDto updateCampaignStatus(int status, int id) {
-		Campaigns campaign=campaignRepository.updateStatusCampaign(status, id);
-		return CampaignsMapper.mapCampaignsDto(campaign);
+	public String updateCampaignStatus(int status, int idRecipient, int id, String startDate) {
+		int campaign=campaignRepository.updateCampaign(status, idRecipient,startDate,id );
+		if(campaign>0) {
+			return "update success";
+		}else 
+		return "update failed";
 	}
 
 
@@ -88,10 +92,17 @@ public class CampaignServiceImpl implements CampaignService{
 		Campaigns campaign=campaignRepository.findByIdCampaign(id);
 		return CampaignsMapper.mapCampaignsDto(campaign);
 	}
-    
-	
 
 
+	@Override
+	public String UpdateCurrentMoneyCampaign(Float money, int id) {
+		int updateCurrentMoney=campaignRepository.updateCurrentMoney(money, id);
+		if(updateCurrentMoney>0) {
+			return "Update Success";
+		}
+		return "Update Failed";
+	}
 	
+ 
 
 }

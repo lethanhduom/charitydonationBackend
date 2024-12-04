@@ -68,7 +68,7 @@ public ResponseEntity<UserDto>getUserByIdAccount(@PathVariable("id") int idAccou
 	
 }
 @GetMapping ("/display/campaignpermit")
-Page<Campaigns>displayCampaignValid(
+Page<CampaignsDto>displayCampaignValid(
 					@RequestParam(defaultValue = "0") int page,
 					@RequestParam(defaultValue = "3") int size
 																
@@ -76,5 +76,7 @@ Page<Campaigns>displayCampaignValid(
 	return campaignService.displayCampaignUser(page, size);
 	
 }
+
+
 
 }

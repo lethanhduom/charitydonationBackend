@@ -56,8 +56,9 @@ public class EmployeeController {
 	Page<CampaignsDto>getPage(
            @RequestParam(defaultValue = "0") int page,
            @RequestParam(defaultValue = "5") int size
+         
    ) {
-       return campaignService.getCampaign(page, size);
+       return campaignService.displayCampaignAdmin(page, size,0);
    }
 @GetMapping("/count")
 ResponseEntity<Long>getCountCampaign(){
@@ -77,6 +78,14 @@ ResponseEntity<LoginResponse>temp(@RequestParam String userName,@RequestParam St
 	 LoginResponse login=accountService.loginAdmin(accountDto);
       return ResponseEntity.ok(login);
 }
+
+@GetMapping("/idaccount/getemployee/{id}")
+ResponseEntity<EmployeeDto>getEmployeeByIdAccount(@PathVariable("id") int id){
+	EmployeeDto employee=employeeservice.getEmployeeByIdAccount(id);
+	return ResponseEntity.ok(employee);
+}
+
+
 
 	
 }
