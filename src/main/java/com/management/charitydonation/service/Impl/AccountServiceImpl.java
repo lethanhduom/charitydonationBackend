@@ -245,4 +245,10 @@ public LoginResponse googleAuthentication(String code) {
 
      return AuthenticationResponse.builder().token(response.getAccessToken()).build();
  }
+
+@Override
+public AccountDto getAccountByID(int id) {
+	Account getAccoun=accountRepository.findByIdAccount(id);
+	return AccountMapper.mapAccountDto(getAccoun);
+}
 }

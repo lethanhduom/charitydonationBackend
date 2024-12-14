@@ -14,6 +14,7 @@ public static DonationsDto mapDonationsDto(Donations donation) {
 	donationdto.setDonationDate(donation.getDonationDate());
 	donationdto.setAccountDto(AccountMapper.mapAccountDto(donation.getAccount3()));
 	donationdto.setCampaignsDto(CampaignsMapper.mapCampaignsDto(donation.getCampaign1()));
+	donationdto.setOther(donation.getOther());
 	return donationdto;
 }
 public static Donations mapDonations (DonationsDto donationdto) {
@@ -25,6 +26,7 @@ public static Donations mapDonations (DonationsDto donationdto) {
 	donation.setDonationDate(donationdto.getDonationDate());
 	donation.setAccount3(AccountMapper.mapAccount(donationdto.getAccountDto()));
 	donation.setCampaign1(CampaignsMapper.mapCampaigns(donationdto.getCampaignsDto()));
+	donation.setOther(donationdto.getOther());
 	return donation;
 }
 }

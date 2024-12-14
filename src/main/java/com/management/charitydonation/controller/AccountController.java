@@ -85,7 +85,11 @@ public ResponseEntity<LoginResponse>googleAuthenticate(@RequestParam("code") Str
 	var result = accountService.googleAuthentication(code);
 	return ResponseEntity.ok(result);
 }
-
+@GetMapping("getaccountbyid/{id}")
+public ResponseEntity<AccountDto>getAccountbyid(@PathVariable ("id") int id){
+	AccountDto getaccount=accountService.getAccountByID(id);
+	return ResponseEntity.ok(getaccount);
+}
 //@PostMapping("/google/authenticate")
 //public ApiResponse<AuthenticationResponse>googleAuthenticate(@RequestParam("code") String code){
 //	var result=accountService.outboundAuthentication(code);

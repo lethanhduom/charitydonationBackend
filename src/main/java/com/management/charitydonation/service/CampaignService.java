@@ -18,6 +18,8 @@ public interface CampaignService {
     public String  updateCampaignStatus(int status,int idEmployee,int id, String endDateExpect);
     public CampaignsDto getCampaignById(int id);
     public String UpdateCurrentMoneyCampaign(Float money,int id);
+    public String  updateCampaignStatusSuccess(int status,int idEmployee,int id, String endDateExpect);
+    public String updateCampaign(Campaigns campaign);
  
 }
 

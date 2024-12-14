@@ -18,5 +18,6 @@ public class DonationsDto {
 	private String donationDate;
 	private AccountDto accountDto;
 	private CampaignsDto campaignsDto;
+	private String other;
 	
 }

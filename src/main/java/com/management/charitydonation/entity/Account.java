@@ -6,6 +6,7 @@ import java.util.Set;
 import org.springframework.stereotype.Component;
 
 import jakarta.annotation.Generated;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -36,6 +37,7 @@ public class Account {
 public int idAccount;
 @Column(name="user_name")
 private String userName;
+@Nullable
 @Column (name="password")
 private String password;
 @Column (name="create_time",columnDefinition = "date")

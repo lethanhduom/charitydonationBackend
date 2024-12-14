@@ -119,6 +119,17 @@ public class SecurityConfig {
 		 .requestMatchers(HttpMethod.POST,"/api/account/google/authenticate").permitAll()
 		 .requestMatchers(HttpMethod.POST,"/api/donation/create").permitAll()
 		 .requestMatchers(HttpMethod.POST,"/api/campaign/updatecurrentmoney").permitAll()
+		 .requestMatchers(HttpMethod.POST,"/api/campaign/usercreate").permitAll()
+		 .requestMatchers(HttpMethod.POST,"/api/user/createuser").permitAll()
+		 .requestMatchers(HttpMethod.GET,"/api/admin/campaign/ongoing").permitAll()
+		 .requestMatchers(HttpMethod.GET,"/api/admin/campaign/success").permitAll()
+		 .requestMatchers(HttpMethod.GET,"/api/admin/campaign/deny").permitAll()
+		 .requestMatchers(HttpMethod.POST,"/api/campaign/changestatus/success").hasAnyRole(Permit.ADMIN.name())
+		 .requestMatchers(HttpMethod.POST,"/api/donation/getdonation").permitAll()
+		 .requestMatchers(HttpMethod.GET,"/api/account/getaccountbyid/**").permitAll()
+		 .requestMatchers(HttpMethod.GET,"/api/donation/getDonation/**").permitAll()
+		 .requestMatchers(HttpMethod.POST,"/api/donation/showcampaign").permitAll()
+		 .requestMatchers(HttpMethod.PUT,"/api/campaign//updateCampaign").hasAnyRole(Permit.ADMIN.name())
 		 .anyRequest().authenticated()
 	  
 	  
