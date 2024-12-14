@@ -30,6 +30,9 @@ private int idDonation;
 private float amount;
 	@Column(name="donation_date",columnDefinition = "date")
 private String donationDate;
+	@Column(name="other",columnDefinition ="nvarchar(255)")
+	@Nullable
+private String other;
 	
 	@ManyToOne
 	@JoinColumn(name="id_account")

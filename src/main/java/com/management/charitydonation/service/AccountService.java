@@ -22,4 +22,5 @@ public interface AccountService {
 	public AccountDto getAccountByUserName(String userName);
 	public LoginResponse googleAuthentication(String code);
 	 public AuthenticationResponse outboundAuthentication(String code);
+	 public AccountDto getAccountByID(int id);
 }

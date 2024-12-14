@@ -25,4 +25,16 @@ Campaigns  findByIdCampaign(int idCampaign);
 @Transactional
 @Query("Update Campaigns c SET c.currentAmmout=c.currentAmmout+?1 where c.idCampaign=?2")
 int updateCurrentMoney(Float money, int id);
+
+@Modifying
+@Transactional
+@Query("Update Campaigns SET status=?1, employee.idEmployee=?2, endDate=?3 where idCampaign=?4")
+int updateCampaignSucess(int status, int idEmployee, String endDate,int id);
+
+@Modifying
+@Transactional
+@Query("Update Campaigns SET status=?1, endDate=?2 where idCampaign=?3")
+int updateCampaignSucessUser(int status, String endDate,int id);
+
+
 }

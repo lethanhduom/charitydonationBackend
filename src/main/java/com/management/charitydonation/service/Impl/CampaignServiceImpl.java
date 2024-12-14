@@ -102,6 +102,33 @@ public class CampaignServiceImpl implements CampaignService{
 		}
 		return "Update Failed";
 	}
+
+
+	@Override
+	public String updateCampaignStatusSuccess(int status, int idEmployee, int id, String endDateExpect) {
+		int campaign=campaignRepository.updateCampaign(status, idEmployee,endDateExpect,id );
+		if(campaign>0) {
+			return "update success";
+		}else 
+		return "update failed";
+	}
+
+
+	@Override
+	public String updateCampaign(Campaigns campaign) {
+		Campaigns getCampaign=campaignRepository.findByIdCampaign(campaign.getIdCampaign());
+		if(campaign==null) {
+			return "Not Found Campaign";
+		}
+		getCampaign.setCampaignName(campaign.getCampaignName());
+		getCampaign.setContent(campaign.getContent());
+		getCampaign.setCurrentAmmout(campaign.getCurrentAmmout());
+		getCampaign.setTargetAmount(campaign.getTargetAmount());
+		getCampaign.setEndDateExpect(campaign.getEndDateExpect());
+		getCampaign.setStartDate(campaign.getStartDate());
+		Campaigns updateCampaign=campaignRepository.save(getCampaign);
+		return "update successful";
+	}
 	
  
 

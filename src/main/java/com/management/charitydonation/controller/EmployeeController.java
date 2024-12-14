@@ -60,6 +60,35 @@ public class EmployeeController {
    ) {
        return campaignService.displayCampaignAdmin(page, size,0);
    }
+   
+   @GetMapping ("/campaign/ongoing")
+	Page<CampaignsDto>getPageOngoing(
+          @RequestParam(defaultValue = "0") int page,
+          @RequestParam(defaultValue = "5") int size
+        
+  ) {
+      return campaignService.displayCampaignAdmin(page, size,1);
+  }
+   
+   @GetMapping ("/campaign/deny")
+	Page<CampaignsDto>getPageDeny(
+          @RequestParam(defaultValue = "0") int page,
+          @RequestParam(defaultValue = "5") int size
+        
+  ) {
+      return campaignService.displayCampaignAdmin(page, size,2);
+  }
+   
+   @GetMapping ("/campaign/success")
+	Page<CampaignsDto>getPageSuccess(
+         @RequestParam(defaultValue = "0") int page,
+         @RequestParam(defaultValue = "5") int size
+       
+ ) {
+     return campaignService.displayCampaignAdmin(page, size,3);
+ }
+  
+   
 @GetMapping("/count")
 ResponseEntity<Long>getCountCampaign(){
 	long countCampaign=campaignService.countCampaign();
